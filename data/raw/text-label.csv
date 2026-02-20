@@ -1,17 +1,265 @@
 text,label
-"This product is absolutely fantastic! I love it.",positive
-"I am so happy with the service, truly amazing.",positive
-"The experience was great, highly recommend.",positive
-"This is terrible, I regret buying it.",negative
-"I hate this product, very disappointed.",negative
-"The service was very bad, completely unacceptable.",negative
-"Excellent quality and fast delivery.",positive
-"Never buying from here again, awful experience.",negative
-"Highly satisfied with my purchase.",positive
-"Disappointing results, not what I expected.",negative
-"A truly wonderful and positive experience.",positive
-"This was a complete waste of money.",negative
-"So glad I bought this, it's perfect!",positive
-"Feeling very frustrated with this issue.",negative
-"Great value for money, very impressed.",positive
-"Absolutely furious with the poor performance.",negative
+"After deploying to staging the site returns a 502 when accessing /login due to upstream host mismatch in nginx.",config
+"Application fails to start on production because the environment variable for DB_HOST is missing.",config
+"SMTP emails are not being delivered; service logs show connection refused to mail server host.",config
+"OAuth login fails with redirect URI does not match registered value after moving domain.",config
+"SSL handshake error in browser; certificate chain seems incomplete for the service hostname.",config
+"Static assets 404 in production — asset path in server settings points to wrong directory.",config
+"Session cookies are not persisting across requests; cookie domain and SameSite settings look incorrect.",config
+"Feature rollout not visible for new tenant; feature flag default appears disabled in deployment settings.",config
+"Kubernetes pod restarts due to failed liveness probe; probe path returns 500 on startup.",config
+"Database migrations not applied during deploy because migration user lacks ALTER permission.",config
+"App logs show failed to mount secret volume; secret name in deployment manifest differs from vault key.",config
+"CORS errors in console preventing API calls from UI; allowed origins list missing frontend subdomain.",config
+"Healthcheck endpoint requires authentication so load balancer marks instance unhealthy.",config
+"Load balancer SSL termination misconfigured — backend receives HTTPS but expects HTTP.",config
+"Emails coming from sandbox address; mailer is pointed at staging SMTP rather than production.",config
+"Cache misses increased after deploy — cache backend host not set correctly in environment.",config
+"Cron jobs not running at expected times; server timezone differs from documented schedule.",config
+"Database connection pool max value too low causing connection exhaustion under load.",config
+"Docker container fails with permission denied writing to /var/www — volume mount is read-only.",config
+"Kubernetes ingress rewrite drops query parameters leading to broken deep links.",config
+"Service cannot connect to Redis: authentication failed due to missing password in secrets.",config
+"Static file upload failing with 413 request entity too large; server max upload size is too small.",config
+"Feature flag toggles ignored after restart; storage backend set to in-memory rather than shared store.",config
+"API gateway rate limits all clients because header with client id not forwarded from proxy.",config
+"SSL cert expired on staging causing browser warnings when QA attempts to test new flows.",config
+"DNS A record still points to old server after cutover, causing intermittent 404s.",config
+"Reverse proxy returns incorrect host header so backend route resolution fails.",config
+"Webhooks failing with 401 from third party because webhook secret was rotated but not updated.",config
+"Session store configured as local filesystem leading to lost sessions across cluster nodes.",config
+"TLS protocol mismatch: client requires TLS1.2 but load balancer enforces TLS1.0.",config
+"S3 uploads failing with AccessDenied; IAM role attached to instance missing PutObject permission.",config
+"Logging disabled for worker process because LOG_LEVEL is set to critical in environment.",config
+"Worker queue starved — broker host variable points to localhost instead of message broker service.",config
+"Application serving old static bundle due to CDN origin pointing to previous release bucket.",config
+"NGINX gzip disabled causing increased payload sizes and slower page loads.",config
+"Database encryption enabled but client not configured for SSL, connection rejected by DB server.",config
+"Kube rolling update stuck because imagePullPolicy set to IfNotPresent with same tag.",config
+"File permission errors writing to temp directory — user under process does not own path.",config
+"Outbound connections blocked by firewall rule for port 5672 to message queue host.",config
+"Time drift between servers causing JWT tokens to be rejected due to skewed timestamps.",config
+"Application base URL set to http in settings causing mixed content when accessed over HTTPS.",config
+"Proxy buffer size too small causing chunked responses to be truncated for large payloads.",config
+"Database DNS TTL low and resolving to rotating hosts causing intermittent connection timeouts.",config
+"Monitoring alerts triggered because retention window for logs is set too short.",config
+"Autoscaler not scaling up because metric name in policy does not match monitoring exporter.",config
+"Ingress annotations missing required rewrite-target resulting in 404 for nested routes.",config
+"Service account lacks permission to read secrets from the vault provider, causing credential errors.",config
+"Static assets served with wrong MIME type because mime.types file not loaded by server.",config
+"Cookie secure flag not set, session cookies rejected when load balancer offloads TLS.",config
+"API keys rotated but not updated in deployment secrets causing auth failures to downstream APIs.",config
+"Cache invalidation not happening because cache key prefix differs across environments.",config
+"Database read replica not configured in connection string, causing higher load on primary.",config
+"Application points at in-memory database in production due to wrong env file used during deploy.",config
+"Service uses default in development credentials in production because secrets file mount failed.",config
+"Cross-origin preflight responses missing Access-Control-Allow-Headers causing PUT requests to fail.",config
+"Upload directory mounted with noexec set causing executable scripts in build to fail to run.",config
+"Webhook consumer rejects events because endpoint URL configured without trailing slash.",config
+"TLS SNI mismatch: virtual hosts served wrong certificate due to host header mismatch.",config
+"Routing table has stale entry for legacy domain which overrides new host rule.",config
+"Database connection string contains localhost from local config mistakenly deployed to prod.",config
+"Email sender name set to default so recipients mark messages as spam; setting not updated.",config
+"TLS client authentication enabled on backend but load balancer not sending client certs.",config
+"API documentation URL broken because external_docs base path incorrectly set in settings.",config
+"Container startup probe times out because probe timeout too short for cold start.",config
+"Service incorrectly bound to 127.0.0.1 instead of 0.0.0.0 preventing external access.",config
+"Reverse proxy strips Authorization header causing backend to fail auth checks.",config
+"Backup job fails to write to S3 because region configuration is missing from credentials.",config
+"Database migration job runs but cannot migrate schema due to missing migration table permissions.",config
+"SSL intermediate certificate missing from keystore so some clients fail certificate validation.",config
+"Environment variables overridden by systemd unit file leading to wrong runtime settings.",config
+"Ingress rules prioritize wildcard host and catch all traffic for the wrong service.",config
+"DNS misconfiguration causes slow domain resolution leading to API timeouts.",config
+"Rate limiting applied globally instead of per IP due to missing header in proxy config.",config
+"API gateway health check path set to / which returns 200 for static but not for dynamic endpoints.",config
+"Client secret stored in plain text in repository instead of vault causing security alerts.",config
+"Session timeout set to very low value in env causing users to be logged out rapidly.",config
+"NTP not configured on containers leading to drift and certificate validation errors.",config
+"Content-Security-Policy header blocks inline scripts because nonce not injected by server.",config
+"Static route cache TTL set to zero causing constant revalidation and poor performance.",config
+"Message broker retention policy disables persistence causing message loss on restart.",config
+"Database connection string contains old port after migration causing connection refused.",config
+"TLS renegotiation disabled on load balancer causing handshake errors with some clients.",config
+"OAuth scopes reduced in settings resulting in missing permissions for API calls.",config
+"Healthcheck path behind auth so orchestrator cannot verify instance readiness.",config
+"HTTP to HTTPS redirect configured with relative URL breaking some API clients.",config
+"Policy for object storage lifecycle accidentally deletes recent uploads due to mismatch.",config
+"Service uses local file-based rate limiter causing inconsistent throttling in multi-node setup.",config
+"Container image tag pinned to old release so security patches not applied.",config
+"Resource limits set too aggressively causing frequent OOM kills during spikes.",config
+"KG endpoint unreachable because upstream host header points at internal cluster name.",config
+"API gateway consumes X-Forwarded-For incorrectly leading to wrong client IP recorded.",config
+"SMTP TLS required but client configured to use plain connection causing handshake failure.",config
+"Fallback SSO provider misconfigured causing login loop for enterprise customers.",config
+"TLS certificate not trusted by older clients due to chain order in keystore.",config
+"Logging path points at ephemeral container storage so logs disappear after restart.",config
+"Service relies on a feature toggle stored in local file not shared across replicas.",config
+"Database maintenance window overlaps with peak traffic because cron schedule misconfigured.",config
+"Ingress TLS passthrough expected but terminated incorrectly at reverse proxy.",config
+"API backend requires a special header but proxy strips it, causing 403 responses.",config
+"Session affinity disabled in load balancer causing user sessions to break across nodes.",config
+"File upload path hard-coded to absolute path that doesn't exist in container runtime.",config
+"Autoscaling cooldown time too short causing flapping under bursty traffic.",config
+"Worker max retries set to zero so transient failures not retried and tasks lost.",config
+"Monitoring exporter configured with wrong port so metrics not scraped by prometheus.",config
+"Database connection uses SSL but certificate authority missing causing handshake fail.",config
+"Packaging script points to wrong build artifact path so latest assets not deployed.",config
+"Ingress controller not mounting TLS secret due to RBAC policy preventing access.",config
+"Application default language set incorrectly causing date parsing errors for users.",config
+"Network policy restricts egress so service cannot reach external third-party API.",config
+"CDN origin protocol forced to HTTP which leads to mixed content errors for HTTPS site.",config
+"Service stops accepting requests during deploy because preStop hook delays too long.",config
+"Feature toggle system points to wrong database table so state is inconsistent across instances.",config
+"Proxy sets HSTS header incorrectly causing browsers to block subdomain during testing.",config
+"API client configured with wrong timeout resulting in premature cancellations.",config
+"Redis eviction policy too aggressive causing frequently used keys to be evicted.",config
+"SAML provider metadata outdated causing SSO handshake failures for new users.",config
+"Worker JVM options set too low causing frequent garbage collection pauses under load.",config
+"SSL certificate rotation script fails because backup path does not exist on server.",config
+"Image pull secret name mismatch causing pods not to pull private images.",config
+"Database max connections set higher than plan supports leading to connection errors.",config
+"Monitoring alert threshold accidentally published at 0 so alerts flood the channel.",config
+"API docs link broken in dashboard because base path updated but not reflected in UI config.",config
+"Hosted cache configured for local file fallback so builds fail on CI agents.",config
+"Container init script expects a file that isn't mounted by volume mapping.",config
+"S3 bucket region mismatch in settings causing signature mismatch errors on upload.",config
+"TLS certificate SAN missing new subdomain after domain migration causing browsers to warn.",config
+"Outbound proxy requires authentication and credentials are not set in environment.",config
+"Rate limiting headers missing leading to clients not observing remaining quota properly.",config
+"Backup rotation policy keeps too few snapshots leading to inability to restore older data.",config
+"Session cookie path set to root when app served under subpath so sessions lost.",config
+"Ingress uses IPv6 rules but backend cluster only supports IPv4 resulting in unreachable endpoints.",config
+"API gateway changes not deployed to all nodes resulting in inconsistent routing behavior.",config
+"Job scheduler misconfigured with wrong cron expression causing nightly jobs to run hourly.",config
+
+"Unit test fails with TypeError: unsupported operand type(s) when running compute_total in tests.",code
+"Application throws NullReferenceException when processing user profile with missing email field.",code
+"IndexError in list processing causes crash on edge case input containing empty arrays.",code
+"Memory leak observed in worker after running for several hours — heap grows steadily.",code
+"Database query returns unexpected null values due to incorrect JOIN condition in service layer.",code
+"Race condition in concurrent request handling leads to duplicated entries under load.",code
+"CI build fails with syntax error after recent refactor of parser function.",code
+"Regression: new release introduced off-by-one error in pagination leading to missing last item.",code
+"Unhandled promise rejection in async handler causes request to hang without response.",code
+"Serialization error converting model to JSON when nested object contains datetime.",code
+"TypeError: cannot iterate over None in CSV import utility for malformed rows.",code
+"Infinite loop in retry logic causes high CPU usage on worker processes.",code
+"Wrong SQL parameter binding leads to injection-like behavior for edge inputs.",code
+"Unit test mock not restoring state leading to test order dependent failures.",code
+"Unexpected 500 from API caused by unhandled exception in validation middleware.",code
+"Function returns stale cache value due to missing cache invalidation on update path.",code
+"HTTP client times out because function awaits on blocking I/O without timeout handling.",code
+"Fuzz: deserializer throws ValueError for valid JSON with escaped characters.",code
+"Null pointer dereference in image processing pipeline for empty file input.",code
+"Incorrect error handling returns 200 with error payload instead of proper 4xx/5xx code.",code
+"Buffer overflow in native extension when parsing large binary attachment causes crash.",code
+"Serializer produces fields in wrong order causing consumer to misinterpret payload.",code
+"Graph traversal algorithm misses nodes due to incorrect visited set usage.",code
+"Data race between cache refresh and invalidation ends up exposing stale secrets.",code
+"Timeout while awaiting DB transaction because transaction held too long due to nested locks.",code
+"Null check missing before accessing user.address in order creation flow causing 500.",code
+"Wrong timezone handling: converting timestamp without tzinfo causing off-by-hours bug.",code
+"Unhandled exception in webhook handler when event payload contains unexpected schema.",code
+"Memory allocation spike when processing large attachments causing OOM kills.",code
+"API returns incorrect content-type header which breaks downstream clients expecting JSON.",code
+"Off-by-one in slicing logic returns empty result for last page under certain sizes.",code
+"Failed assert in integration test for payment flow after refactor of currency handling.",code
+"Incorrect regex in validation rejects valid email addresses with plus signs.",code
+"File descriptor leak observed in file uploader after many sequential uploads.",code
+"Type mismatch in function signature causes TypeError in strongly typed path.",code
+"Deadlock detected when two services call each other during startup sequence.",code
+"API response contains HTML escaped entities due to double escaping in template renderer.",code
+"Incorrect default parameter value mutated across calls causing state bleed between requests.",code
+"Deprecated third-party API call still present; new API returns different payload shape.",code
+"Concurrency bug in in-memory counter yields incorrect metrics under parallel load.",code
+"Stack overflow in recursive algorithm for deeply nested input sets causing crash.",code
+"SQL query missing ORDER BY causing non-deterministic results in pagination tests.",code
+"Floating point rounding causes small discrepancies in billing calculation tests.",code
+"ASGI event loop blocked by long-running sync operation in request handler.",code
+"Broken link in generated sitemap due to wrong URL builder using base path incorrectly.",code
+"Incorrect exception caught masking the real error from failing database operation.",code
+"Unit test flaky: depends on timing-sensitive sleep used in test setup.",code
+"Security: input sanitation missing in file upload path enabling path traversal on special names.",code
+"Service returns 400 for valid requests due to strict schema validation rejecting optional fields.",code
+"Incorrect encoding handling when reading files with non-UTF8 bytes raises UnicodeDecodeError.",code
+"Search index not updated after document change due to missing commit step in indexer.",code
+"API gateway rewrites payload and strips nested arrays causing downstream parsing failures.",code
+"Memory use ramps up in async iterator due to accumulating list instead of streaming write.",code
+"Unit test expectation outdated after refactor; assertion compares wrong status code.",code
+"Slow query found due to subquery executed per row instead of joined aggregation.",code
+"Unhandled key error when dictionary missing expected optional key in parsing logic.",code
+"File upload produces truncated image because stream closed early by caller.",code
+"Background job crashes intermittently due to NoneType passed to logger formatter.",code
+"Wrong dependency version pinned causing incompatibility with new framework APIs.",code
+"Missing await in async helper leads to coroutine object returned instead of awaited result.",code
+"Index out of range when splitting path components in URL parser for trailing slash cases.",code
+"Incorrect status code mapping: some validation errors return 500 instead of 422.",code
+"Resource leak in DB client due to connections not closed on exception path.",code
+"Faulty caching key includes user ID leading to cross-user cache contamination.",code
+"Incorrect header casing causes downstream proxy to reject the request unexpectedly.",code
+"Template rendering crash on missing context variable because no default provided.",code
+"Scheduler skips tasks when job list mutated during iteration causing lost runs.",code
+"Unexpected TypeError in analytics pipeline when encountering decimal.Decimal values.",code
+"Missing guard for empty input resulting in division by zero in statistics module.",code
+"Unhandled exception raised during JSON schema validation for optional sub-object.",code
+"Build fails in CI due to environment variable required only on developer machines.",code
+"Out-of-memory observed when generating large PDF due to building entire document in memory.",code
+"Incorrect caching of async function result causing stale data returned to users.",code
+"Database transaction isolation level causes phantom reads during concurrent updates.",code
+"Exception in metrics exporter crashes service because exception is not caught in thread.",code
+"Off-by-one in date range computation excludes last day from billing window.",code
+"Incorrect path joining results in double slashes causing file not found on some filesystems.",code
+"Function mutates input list unexpectedly causing callers to see side effects.",code
+"Invalid JSON produced because trailing comma added when serializing empty list.",code
+"Unit tests failing due to reliance on system locale differences in CI vs local.",code
+"Null value passed to a library call which expects string leading to TypeError.",code
+"Sporadic test failure due to non-deterministic ordering of dict iteration in older Python.",code
+"Missing break in switch-like logic causing fall-through and incorrect branch execution.",code
+"Websocket connection closed immediately because handshake missing required header.",code
+"Incorrectly scoped variable in closure leads to all callbacks using last loop value.",code
+"Serialization uses shallow copy and later mutation affects all serialized objects.",code
+"Long-running transaction holds locks blocking other queries and causing timeouts.",code
+"Endpoint accepts malformed input due to overly permissive parser causing downstream errors.",code
+"Failure to validate user input leads to uncaught exception in processing pipeline.",code
+"Resource deallocation order wrong causing use-after-free like errors in native module.",code
+"Problem with encoding of query parameters causing unicode characters to be mangled.",code
+"Test mocks not isolated, modifying global state and causing subsequent tests to fail.",code
+"Incorrect fallback for missing header causes request to be processed as anonymous user.",code
+"Data corruption reproduced when multiple writers update same record without optimistic locking.",code
+"API returns inconsistent JSON structure between versions due to different serializer used.",code
+"Unexpected 422 returned because object id field parsed as string instead of integer.",code
+"Failure when parsing CSV with embedded newlines due to naive line splitting.",code
+"High latency during bursts traced to synchronous disk writes in request path.",code
+"Incorrect use of floating point comparisons leads to unstable equality checks in tests.",code
+"Background thread swallows exceptions causing silent job failures without logs.",code
+"Assertion error in test suite after refactor changed default timeout values.",code
+"Stack trace indicates recursive call leading to maximum recursion depth exceeded on certain inputs.",code
+"Integration test fails when run in CI because it depends on external service not mocked.",code
+"Cache stampede when key expires because lazy reload performed by many concurrent requests.",code
+"Function incorrectly assumes sorted input and misbehaves when order changes in new dataset.",code
+"Resource URL builder escapes characters incorrectly resulting in broken links.",code
+"Missing permission check allows unauthorized access to admin-only endpoint in certain flows.",code
+"Error when converting CSV column to int for very large values causing ValueError.",code
+"Proxy middleware swallows trailing slash causing route mismatch for subpath handlers.",code
+"API client library throws when timeout value set to zero instead of None.",code
+"Unhandled case for empty search query returns 500 instead of empty result set.",code
+"Tests intermittently fail due to reliance on wall-clock time rather than frozen time.",code
+"Incorrect merge of concurrent updates yields lost updates without conflict detection.",code
+"Function returns generator instead of list causing unexpected iterator consumption in caller.",code
+"Database read after write inconsistency in eventual consistency mode not handled in logic.",code
+"Wrong codec used when writing binary file causing data corruption on Windows only.",code
+"Performance regression: new sorting algorithm O(n^2) on large inputs causing timeouts.",code
+"Unhandled exception in response middleware causes header write after response started error.",code
+"Service behaves differently under Python 3.11 due to changed stdlib behavior for dict ordering.",code
+"Error in dependency injection config results in wrong implementation being provided at runtime.",code
+"API returns duplicate IDs because dedup logic uses wrong key for uniqueness.",code
+"Missing newline at EOF causes some parsers to reject the generated CSV output.",code
+"Incorrect HTML escaping in templates allows XSS vectors in user-generated content.",code
+"Test helper modifies environment variables and does not restore them after completion.",code
+"Crash observed when deserializing protobuf message with unknown enum values.",code
+"Unhandled value error when parsing date in format yyyy/dd/mm introduced by locale change.",code
+"Incorrectly handling of float NaN values breaking aggregation functions in analytics.",code
+"Response caching returns 200 for deleted resources due to missing cache purge on delete.",code
+"Unit test suite times out in CI because global teardown waits on external network call.",code
+"Unexpected redirect loop from authentication middleware when callback URL logic flawed.",code
